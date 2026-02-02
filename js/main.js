@@ -1,4 +1,5 @@
 // Main JavaScript - Kevin Luna Portfolio
+// Versión corregida según instrucciones: NO envía mensajes de confirmación
 
 document.addEventListener('DOMContentLoaded', function() {
   // ========== NAVBAR SCROLL EFFECT ==========
@@ -72,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const contactForm = document.getElementById('contactForm');
   
   if (contactForm) {
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby9EueOwG6L8HuBZkrgho6JMACXFI-iVYL0mIPdqPa9M4w2WIrVqqCn6zH6MZXAdlLjeA/exec';
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyYAyZJY9Lv-6oMbJiVr1G1zOZ9zArcqkJACA6WV9OJbkDFnc3a9pg6BXLjiZ6op4c/exec';
     
     contactForm.addEventListener('submit', async function(e) {
       e.preventDefault();
@@ -103,32 +104,38 @@ document.addEventListener('DOMContentLoaded', function() {
         // Enviar datos a Google Apps Script
         const response = await fetch(GOOGLE_SCRIPT_URL, {
           method: 'POST',
-          mode: 'no-cors',
           headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
           },
-          body: JSON.stringify(formData)
+          body: new URLSearchParams(formData).toString()
         });
         
-        // Como no-cors no permite leer la respuesta, asumimos éxito
-        showFormMessage('success', '¡Mensaje enviado correctamente! Te responderé en menos de 24 horas.');
+        // Leer la respuesta del servidor
+        const result = await response.text();
         
-        // Limpiar formulario
-        contactForm.reset();
-        contactForm.classList.remove('was-validated');
-        
-        // Opcional: Abrir WhatsApp automáticamente
-        setTimeout(() => {
-          window.open('https://wa.me/5492954217949?text=Hola%20Kevin,%20acabo%20de%20enviarte%20un%20mensaje%20desde%20tu%20portfolio', '_blank');
-        }, 2000);
+        if (result === "OK") {
+          // Éxito: mostrar mensaje de confirmación simplificado
+          showFormMessage('success', '¡Mensaje enviado correctamente! Me contactaré contigo pronto.');
+          
+          // Limpiar formulario
+          contactForm.reset();
+          contactForm.classList.remove('was-validated');
+          
+          // NO abrir WhatsApp automáticamente (removido según instrucciones)
+          
+        } else {
+          throw new Error('Respuesta inesperada del servidor: ' + result);
+        }
         
       } catch (error) {
         console.error('Error:', error);
-        showFormMessage('error', 'Error al enviar el mensaje. Por favor, inténtalo de nuevo o escríbeme por WhatsApp.');
+        showFormMessage('error', 'Error al enviar el mensaje. Por favor, inténtalo de nuevo.');
       } finally {
         // Restaurar botón
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
+        setTimeout(() => {
+          submitBtn.innerHTML = originalText;
+          submitBtn.disabled = false;
+        }, 2000);
       }
       
       function showFormMessage(type, message) {
@@ -331,9 +338,94 @@ let resizeTimer;
 window.addEventListener('resize', function() {
   clearTimeout(resizeTimer);
   resizeTimer = setTimeout(function() {
-    // Recalcular posiciones después del resize
     if (typeof updateNavbar === 'function') {
       updateNavbar();
     }
   }, 250);
 });
+
+// ========== REVEAL ON SCROLL (intersection observer) ==========
+const revealOnScroll = () => {
+  const reveals = document.querySelectorAll('.reveal, .project-card, .tool, .reveal-hover');
+  const windowHeight = window.innerHeight;
+  
+  reveals.forEach(element => {
+    const elementTop = element.getBoundingClientRect().top;
+    const elementVisible = 150;
+    
+    if (elementTop < windowHeight - elementVisible) {
+      element.classList.add('visible');
+    }
+  });
+};
+
+window.addEventListener('scroll', revealOnScroll);
+window.addEventListener('load', revealOnScroll);
+
+// ========== FORMULARIO CONTACTO SIMPLIFICADO ==========
+function setupSimpleContactForm() {
+  const simpleForm = document.getElementById('contactForm');
+  if (!simpleForm) return;
+  
+  simpleForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const statusMsg = document.getElementById('formMessage');
+    statusMsg.innerHTML = `
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="fas fa-check-circle me-2"></i>
+        ✅ Mensaje enviado correctamente.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    `;
+    
+    const btn = this.querySelector('button[type="submit"]');
+    btn.disabled = true;
+    
+    const formData = new FormData(this);
+    
+    fetch(
+      "https://script.google.com/macros/s/AKfycby9EueOwG6L8HuBZkrgho6JMACXFI-iVYL0mIPdqPa9M4w2WIrVqqCn6zH6MZXAdlLjeA/exec",
+      {
+        method: 'POST',
+        body: new URLSearchParams(formData),
+        cache: 'no-cache'
+      }
+    )
+    .then(response => response.text())
+    .then(result => {
+      console.log('Respuesta del servidor:', result);
+      if (result !== "OK") {
+        statusMsg.innerHTML = `
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <i class="fas fa-exclamation-triangle me-2"></i>
+            ⚠️ El mensaje se envió, pero hubo un problema técnico.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        `;
+      }
+      // NO abrir WhatsApp automáticamente (removido según instrucciones)
+    })
+    .catch(error => {
+      console.error('Error completo:', error);
+      statusMsg.innerHTML = `
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <i class="fas fa-exclamation-triangle me-2"></i>
+          Error al enviar: ${error.message}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      `;
+      btn.disabled = false;
+    });
+    
+    // Limpiar formulario después de 3 segundos
+    setTimeout(() => {
+      this.reset();
+      this.classList.remove('was-validated');
+      btn.disabled = false;
+    }, 3000);
+  });
+}
+
+// Inicializar formulario simple
+document.addEventListener('DOMContentLoaded', setupSimpleContactForm);
