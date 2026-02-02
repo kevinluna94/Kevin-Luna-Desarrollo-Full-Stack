@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portfolio — Kevin Luna</title>
+  <meta name="description" content="Proyectos destacados de Kevin Luna: desarrollo web, automatización y análisis de datos.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="http://www.kevinluna.wuaze.com/portfolio.htm">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/transitions.css">
+</head>
+<body class="preload">
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg fixed-top navbar-dark" id="mainNavbar" aria-label="Main navigation">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <img src="assets/Logo-Kevin-Luna.svg" alt="Logo Kevin Luna" class="me-2 logo-img fade-in" onerror="this.style.display='none'">
+        <span class="brand-name slide-in-left">Kevin Luna</span>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navCollapse"
+              aria-controls="navCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navCollapse">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link nav-link-transition" href="index.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-transition" href="about.html">Sobre mí</a></li>
+          <li class="nav-item"><a class="nav-link active nav-link-transition" href="portfolio.html">Portfolio</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-transition" href="contact.html">Contacto</a></li>
+          <li class="nav-item ms-3">
+            <a class="btn btn-outline-light btn-sm pulse-on-hover" href="assets/Curriculum Vitae - Kevin Luna.pdf" download>Descargar CV</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="pt-7">
+    <!-- HEADER PORTFOLIO -->
+    <section class="portfolio-header bg-brand-light py-5">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-8" data-aos="fade-right">
+            <h1 class="display-5 fw-bold mb-3">Portfolio de Proyectos</h1>
+            <p class="lead mb-4">Soluciones digitales desarrolladas con tecnología moderna, diseño estratégico y enfoque en resultados.</p>
+            <div class="d-flex flex-wrap gap-2">
+              <a href="#web-development" class="btn btn-dark scale-on-hover">Desarrollo Web</a>
+              <a href="#data-science" class="btn btn-outline-dark scale-on-hover">Ciencia de Datos</a>
+              <a href="#automation" class="btn btn-outline-dark scale-on-hover">Automatización</a>
+            </div>
+          </div>
+          <div class="col-lg-4 text-center" data-aos="fade-left">
+            <i class="fas fa-code-branch display-1 text-brand"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DESARROLLO WEB -->
+    <section id="web-development" class="container py-6 mb-5">
+      <h2 class="section-title mb-5 text-center" data-aos="fade-up">Desarrollo Web</h2>
+
+      <div class="row g-4">
+        <!-- PROYECTO 0 -->
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="card project-card hover-3d h-100">
+            <div class="card-img-wrapper">
+              <img src="assets/Landin_PampTienda.png" class="card-img-top" alt="Landing Page PampTienda">
+              <div class="card-overlay">
+                <span class="btn btn-brand">Ver Demo</span>
+              </div>
+            </div>
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Landing Page</h5>
+              <p class="small text-muted">PampTienda</p>
+              <p class="small">Página de presentación profesional diseñada para mostrar la marca, servicios y contacto de forma clara y moderna.</p>
+              <div class="tech-tags">
+                <span class="tech-tag">HTML5</span>
+                <span class="tech-tag">CSS3</span>
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">Bootstrap</span>
+              </div>
+              <div class="mt-auto pt-3">
+                <a class="btn btn-sm btn-primary" href="https://kevinluna94.github.io/Landing_PampTienda/" target="_blank" rel="noopener" role="button">
+                  <i class="fas fa-external-link-alt me-1"></i> Demo
+                </a>
+                <a class="btn btn-sm btn-outline-dark ms-2" href="https://github.com/kevinluna94/Landing_PampTienda" target="_blank">
+                  <i class="fab fa-github me-1"></i> Código
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROYECTO 1 -->
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="card project-card hover-3d h-100">
+            <div class="card-img-wrapper">
+              <img src="assets/BannerPampTienda.png" class="card-img-top" alt="Ecommerce Multi-Tenant PampTienda">
+              <div class="card-overlay">
+                <span class="btn btn-brand">Ver Demo</span>
+              </div>
+            </div>
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Ecommerce Multi-Tenant</h5>
+              <p class="small text-muted">PampTienda</p>
+              <p class="small">Plataforma SaaS donde cada comerciante obtiene su propia tienda independiente, con panel de control, productos, pagos y administración completa.</p>
+              <div class="tech-tags">
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">Node.js</span>
+                <span class="tech-tag">MongoDB</span>
+                <span class="tech-tag">Express</span>
+              </div>
+              <div class="mt-auto pt-3">
+                <a class="btn btn-sm btn-primary" href="https://tienda-ecommerce-ariophytum.vercel.app/" target="_blank" rel="noopener" role="button">
+                  <i class="fas fa-external-link-alt me-1"></i> Demo
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROYECTO 2 -->
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="card project-card hover-3d h-100">
+            <div class="card-img-wrapper">
+              <img src="assets/paginaweb-abierto-pampeano.png" class="card-img-top" alt="Página Web Abierto Pampeano">
+              <div class="card-overlay">
+                <span class="btn btn-brand">Ver Demo</span>
+              </div>
+            </div>
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Página Web</h5>
+              <p class="small text-muted">Abierto Pampeano</p>
+              <p class="small">Sitio web oficial para el evento de baile deportivo más importante de La Pampa, con información, inscripciones y galería multimedia.</p>
+              <div class="tech-tags">
+                <span class="tech-tag">HTML5</span>
+                <span class="tech-tag">CSS3</span>
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">Responsive</span>
+              </div>
+              <div class="mt-auto pt-3">
+                <a class="btn btn-sm btn-primary" href="https://www.abiertopampeano.wuaze.com/" target="_blank" rel="noopener" role="button">
+                  <i class="fas fa-external-link-alt me-1"></i> Demo
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROYECTO 3 -->
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="card project-card hover-3d h-100">
+            <div class="card-img-wrapper">
+              <img src="assets/image.png" class="card-img-top" alt="Landing Page Emprendedores y Curiosos Digitales">
+              <div class="card-overlay">
+                <span class="btn btn-brand">Ver Demo</span>
+              </div>
+            </div>
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Landing Page</h5>
+              <p class="small text-muted">Emprendedores y Curiosos Digitales</p>
+              <p class="small">Página de captación diseñada para emprendedores interesados en transformación digital, con formulario de suscripción y contenido segmentado.</p>
+              <div class="tech-tags">
+                <span class="tech-tag">HTML5</span>
+                <span class="tech-tag">CSS3</span>
+                <span class="tech-tag">Formularios</span>
+                <span class="tech-tag">Marketing</span>
+              </div>
+              <div class="mt-auto pt-3">
+                <a class="btn btn-sm btn-primary" href="https://kevinluna94.github.io/Ebooks-10-2-Emprendedores-y-Curiosos-Digitales/" target="_blank" rel="noopener" role="button">
+                  <i class="fas fa-external-link-alt me-1"></i> Demo
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROYECTO 4 -->
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="card project-card hover-3d h-100">
+            <div class="card-img-wrapper">
+              <img src="assets/FuturaTech.png" class="card-img-top" alt="Landing Page FuturaTech">
+              <div class="card-overlay">
+                <span class="btn btn-brand">Ver Demo</span>
+              </div>
+            </div>
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Formulario de Suscripción</h5>
+              <p class="small text-muted">FuturaTech - Suscripción PDF & Formulario Profesional</p>
+              <p class="small">Landing page optimizada para conversión con formulario de suscripción que entrega contenido digital de valor automáticamente.</p>
+              <div class="tech-tags">
+                <span class="tech-tag">HTML5</span>
+                <span class="tech-tag">CSS3</span>
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">Automation</span>
+              </div>
+              <div class="mt-auto pt-3 d-flex gap-2">
+                <a class="btn btn-sm btn-primary" href="https://kevinluna94.github.io/landing-futuratech/" target="_blank" rel="noopener" role="button">
+                  <i class="fas fa-external-link-alt me-1"></i> Demo
+                </a>
+                <a class="btn btn-sm btn-outline-dark" href="https://github.com/kevinluna94/landing-futuratech" target="_blank">
+                  <i class="fab fa-github me-1"></i> Código
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROYECTO 5 -->
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="card project-card hover-3d h-100">
+            <div class="card-img-wrapper">
+              <img src="assets/Portada-Datavantex.png" class="card-img-top" alt="Sitio Web Corporativo">
+              <div class="card-overlay">
+                <span class="btn btn-brand">Ver Demo</span>
+              </div>
+            </div>
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Sitio Web Corporativo</h5>
+              <p class="small text-muted">DataVantex</p>
+              <p class="small">Datos que transforman, Código que impacta: Desarrollo web de alto rendimiento con análisis de datos avanzado para crear soluciones escalables que impulsan el crecimiento negocios.</p>
+              <div class="tech-tags">
+                <span class="tech-tag">HTML5</span>
+                <span class="tech-tag">CSS3</span>
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">Bootstrap</span>
+              </div>
+              <div class="mt-auto pt-3 d-flex gap-2">
+                <a class="btn btn-sm btn-primary" href="https://kevinluna94.github.io/agencia-datavantex/index.html" target="_blank" rel="noopener" role="button">
+                  <i class="fas fa-external-link-alt me-1"></i> Demo
+                </a>
+                <a class="btn btn-sm btn-outline-dark" href="https://github.com/kevinluna94/agencia-datavantex" target="_blank">
+                  <i class="fab fa-github me-1"></i> Código
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DATOS QUE GENERAN IMPACTO -->
+    <section id="data-science" class="data-section py-6 bg-light">
+      <div class="container">
+        <h2 class="section-title text-center mb-5" data-aos="fade-up">Datos que generan impacto</h2>
+
+        <div class="row g-4">
+          <!-- Ingeniería de Datos -->
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="card data-card hover-3d text-center h-100">
+              <div class="data-card-icon">
+                <i class="fas fa-database"></i>
+              </div>
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">Ingeniería de Datos</h5>
+                <p class="card-text flex-grow-1">
+                  Diseño y optimización de pipelines escalables. Transformo datos crudos en información lista para tus sistemas y dashboards.
+                </p>
+                <div class="tech-tags justify-content-center">
+                  <span class="tech-tag">Python</span>
+                  <span class="tech-tag">SQL</span>
+                  <span class="tech-tag">ETL</span>
+                </div>
+                <a href="contact.html" class="btn btn-brand mt-3 scale-on-hover">Consultar Proyecto</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ciencia de Datos -->
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="card data-card hover-3d text-center h-100">
+              <div class="data-card-icon">
+                <i class="fas fa-chart-line"></i>
+              </div>
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">Ciencia de Datos</h5>
+                <p class="card-text flex-grow-1">
+                  Modelos predictivos, machine learning y análisis exploratorio. Encuentro patrones ocultos que potencian decisiones.
+                </p>
+                <div class="tech-tags justify-content-center">
+                  <span class="tech-tag">Pandas</span>
+                  <span class="tech-tag">NumPy</span>
+                  <span class="tech-tag">ML</span>
+                </div>
+                <a href="contact.html" class="btn btn-brand mt-3 scale-on-hover">Consultar Proyecto</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Data Analyst -->
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+            <div class="card data-card hover-3d text-center h-100">
+              <div class="data-card-icon">
+                <i class="fas fa-chart-pie"></i>
+              </div>
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">Data Analyst</h5>
+                <p class="card-text flex-grow-1">
+                  Dashboards interactivos y reportes visuales con impacto. Convierto métricas complejas en insights claros para tu negocio.
+                </p>
+                <div class="tech-tags justify-content-center">
+                  <span class="tech-tag">Power BI</span>
+                  <span class="tech-tag">Excel</span>
+                  <span class="tech-tag">Dash</span>
+                </div>
+                <a href="contact.html" class="btn btn-brand mt-3 scale-on-hover">Consultar Proyecto</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA PORTFOLIO -->
+    <section class="cta-portfolio py-6">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-8" data-aos="fade-right">
+            <h2 class="mb-3">¿Tienes un proyecto en mente?</h2>
+            <p class="lead mb-4">Hablemos sobre cómo puedo ayudarte a transformar tu idea en una solución digital exitosa.</p>
+          </div>
+          <div class="col-lg-4 text-lg-end" data-aos="fade-left">
+            <a href="contact.html" class="btn btn-lg btn-brand scale-on-hover">
+              <i class="fas fa-paper-plane me-2"></i> Iniciar Proyecto
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- WHATSAPP FLOAT -->
+  <a class="whatsapp-float pulse" href="https://wa.me/5492954217949?text=Hola%20Kevin%2C%20vi%20tu%20portafolio" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="whatsapp-tooltip">¡Hablemos!</span>
+  </a>
+
+  <!-- Back to Top -->
+  <a href="#" class="back-to-top" id="backToTop">
+    <i class="fas fa-chevron-up"></i>
+  </a>
+
+  <!-- FOOTER -->
+  <footer class="footer bg-black text-white py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+          <div class="d-flex align-items-center mb-3">
+            <img src="assets/Logo-Kevin-Luna.svg" alt="Logo Kevin Luna" class="me-3 logo-img" style="height: 50px;">
+            <div>
+              <strong class="h4">Kevin Luna</strong><br/>
+              <span class="text-brand">Negocios Digitales • Data Science • Desarrollo Web Full Stack</span>
+            </div>
+          </div>
+          <p class="mb-0">Transformando ideas en soluciones digitales desde Santa Rosa, La Pampa.</p>
+        </div>
+        
+        <div class="col-lg-6">
+          <div class="social-links d-flex justify-content-lg-end gap-4">
+            <a href="https://instagram.com/emprendedordigitalia" target="_blank" aria-label="Instagram" class="social-icon scale-on-hover">
+              <i class="fab fa-instagram fa-2x"></i>
+            </a>
+            <a href="https://github.com/kevinluna94" target="_blank" aria-label="GitHub" class="social-icon scale-on-hover">
+              <i class="fab fa-github fa-2x"></i>
+            </a>
+            <a href="mailto:kevineluna94@gmail.com" aria-label="Email" class="social-icon scale-on-hover">
+              <i class="fas fa-envelope fa-2x"></i>
+            </a>
+            <a href="https://wa.me/5492954217949" target="_blank" aria-label="WhatsApp" class="social-icon scale-on-hover">
+              <i class="fab fa-whatsapp fa-2x"></i>
+            </a>
+          </div>
+          <p class="text-end mt-3 mb-0">© <span id="currentYearPortfolio"></span> Kevin Luna. Todos los derechos reservados.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
+  
+  <script>
+    // Inicializar AOS
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 100
+    });
+    
+    // Año actual en footer
+    document.getElementById('currentYearPortfolio').textContent = new Date().getFullYear();
+    
+    // Remover clase de preload
+    window.addEventListener('load', function() {
+      document.body.classList.remove('preload');
+    });
+    
+    // Filtro de categorías
+    document.querySelectorAll('.category-filter').forEach(button => {
+      button.addEventListener('click', function() {
+        const category = this.getAttribute('data-category');
+        
+        // Actualizar botones activos
+        document.querySelectorAll('.category-filter').forEach(btn => {
+          btn.classList.remove('active');
+        });
+        this.classList.add('active');
+        
+        // Filtrar proyectos
+        document.querySelectorAll('.project-card').forEach(card => {
+          if (category === 'all' || card.getAttribute('data-category') === category) {
+            card.style.display = 'block';
+            setTimeout(() => {
+              card.style.opacity = '1';
+              card.style.transform = 'translateY(0)';
+            }, 100);
+          } else {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+              card.style.display = 'none';
+            }, 300);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

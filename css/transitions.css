@@ -1,0 +1,357 @@
+/* Transiciones y efectos específicos */
+
+/* Clases de transición */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.8s ease forwards;
+}
+
+.fade-in-delayed {
+  opacity: 0;
+  animation: fadeIn 0.8s ease 0.3s forwards;
+}
+
+.slide-in-left {
+  opacity: 0;
+  animation: slideInLeft 0.8s ease forwards;
+}
+
+.slide-in-right {
+  opacity: 0;
+  animation: slideInRight 0.8s ease forwards;
+}
+
+.slide-up {
+  opacity: 0;
+  animation: slideUp 0.8s ease forwards;
+}
+
+.scale-in {
+  opacity: 0;
+  animation: scaleIn 0.8s ease forwards;
+}
+
+/* Hover Effects */
+.scale-on-hover {
+  transition: transform var(--transition-smooth);
+}
+
+.scale-on-hover:hover {
+  transform: scale(1.05);
+}
+
+.slide-up-on-hover {
+  transition: transform var(--transition-smooth);
+}
+
+.slide-up-on-hover:hover {
+  transform: translateY(-3px);
+}
+
+.pulse-on-hover:hover {
+  animation: pulse 0.5s ease;
+}
+
+.hover-3d {
+  transition: all var(--transition-smooth);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.hover-3d:hover {
+  transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+  box-shadow: 
+    0 20px 40px rgba(0,0,0,0.1),
+    0 0 0 1px rgba(246, 167, 0, 0.1);
+}
+
+/* Navbar Link Transitions */
+.nav-link-transition {
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-link-transition::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(246, 167, 0, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.nav-link-transition:hover::before {
+  left: 100%;
+}
+
+/* Button Ripple Effect */
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-ripple::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%);
+  transform-origin: 50% 50%;
+}
+
+.btn-ripple:focus:not(:active)::after {
+  animation: ripple 1s ease-out;
+}
+
+/* Loading Animation */
+.loading-spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(246, 167, 0, 0.3);
+  border-radius: 50%;
+  border-top-color: var(--brand);
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Shake Animation */
+.shake-on-hover:hover {
+  animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+/* Bounce Animation */
+.bounce-on-hover:hover {
+  animation: bounce 0.5s ease;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Float Animation */
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Gradient Border Animation */
+.gradient-border {
+  position: relative;
+  border: 2px solid transparent;
+  background: linear-gradient(var(--white), var(--white)) padding-box,
+              linear-gradient(45deg, var(--brand), var(--brand-dark)) border-box;
+  animation: borderRotate 3s linear infinite;
+}
+
+@keyframes borderRotate {
+  0% { border-image: linear-gradient(0deg, var(--brand), var(--brand-dark)) 1; }
+  100% { border-image: linear-gradient(360deg, var(--brand), var(--brand-dark)) 1; }
+}
+
+/* Typewriter Effect */
+.typewriter {
+  overflow: hidden;
+  border-right: 2px solid var(--brand);
+  white-space: nowrap;
+  animation: 
+    typing 3.5s steps(40, end),
+    blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: var(--brand) }
+}
+
+/* Scroll Progress Bar */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--brand), var(--brand-dark));
+  z-index: 9999;
+  transition: width 0.1s ease;
+}
+
+/* Card Flip */
+.card-flip {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+
+.card-flip.flipped {
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
+
+/* Glitch Effect */
+.glitch-on-hover:hover {
+  animation: glitch 0.3s linear;
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+/* Staggered Children Animation */
+.stagger-children > * {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUp 0.5s ease forwards;
+}
+
+.stagger-children > *:nth-child(1) { animation-delay: 0.1s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.2s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.3s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.4s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.5s; }
+
+/* Parallax Scrolling */
+.parallax-layer {
+  position: absolute;
+  will-change: transform;
+}
+
+/* Gradient Text Animation */
+.gradient-text {
+  background: linear-gradient(45deg, var(--brand), var(--brand-dark));
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Blur In Animation */
+.blur-in {
+  opacity: 0;
+  filter: blur(10px);
+  animation: blurIn 0.8s ease forwards;
+}
+
+@keyframes blurIn {
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+/* Rotate Animation */
+.rotate-on-hover:hover {
+  animation: rotate 0.5s ease;
+}
+
+@keyframes rotate {
+  to { transform: rotate(360deg); }
+}
+
+/* Wave Animation */
+.wave-animation {
+  animation: wave 2s ease-in-out infinite;
+}
+
+@keyframes wave {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(10deg); }
+  75% { transform: rotate(-10deg); }
+}
+
+/* Focus Transition for Form Elements */
+.form-control:focus {
+  border-color: var(--brand);
+  box-shadow: 0 0 0 0.25rem rgba(246, 167, 0, 0.25);
+  transform: scale(1.02);
+  transition: all 0.3s ease;
+}
+
+/* Smooth Page Transitions */
+.page-transition {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: pageIn 0.8s ease forwards;
+}
+
+@keyframes pageIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--brand);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--brand-dark);
+}
+
+/* Print Styles */
+@media print {
+  .whatsapp-float,
+  .back-to-top,
+  .navbar,
+  .btn {
+    display: none !important;
+  }
+}
