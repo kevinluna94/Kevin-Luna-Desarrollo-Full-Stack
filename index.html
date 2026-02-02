@@ -2,12 +2,55 @@
 <html lang="es">
 <head>
   <meta charset="utf-8" />
-  <meta name="google-site-verification" content="TajKMzIJpl9mMPcFQosmgnxwv7pMeXjkB4RsJeXF0aA" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Kevin Luna | Desarrollo Web, Datos y Negocios Digitales en Santa Rosa, La Pampa</title>
-  <meta name="description" content="Kevin Luna - Full Stack Developer y Data Scientist en Santa Rosa, La Pampa. Creo páginas web profesionales, analizo datos y diseño estrategias digitales para emprendedores y empresas.">
+  
+  <!-- SEO Core -->
+  <title>Kevin Luna | Desarrollo Web Full Stack & Data Science en Santa Rosa, La Pampa</title>
+  <meta name="description" content="Kevin Luna - Desarrollador Web Full Stack y Data Scientist. Creo sitios web profesionales, sistemas personalizados y dashboards de datos para emprendedores y empresas en Argentina.">
+  <meta name="keywords" content="desarrollo web, full stack developer, data science, santa rosa la pampa, programador web, desarrollo de software, analista de datos, python, javascript, react, node.js, portfolio developer">
+  <meta name="author" content="Kevin Luna">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://www.kevinluna.wuaze.com/">
+  <meta property="og:title" content="Kevin Luna | Desarrollo Web Full Stack & Data Science">
+  <meta property="og:description" content="Transformo ideas en soluciones digitales. Desarrollo web, análisis de datos y automatización para negocios.">
+  <meta property="og:image" content="http://www.kevinluna.wuaze.com/assets/Logo-Kevin-Luna.svg">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="http://www.kevinluna.wuaze.com/">
+  <meta property="twitter:title" content="Kevin Luna | Desarrollo Web Full Stack & Data Science">
+  <meta property="twitter:description" content="Transformo ideas en soluciones digitales. Desarrollo web, análisis de datos y automatización para negocios.">
+  <meta property="twitter:image" content="http://www.kevinluna.wuaze.com/assets/Logo-Kevin-Luna.svg">
+  
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Kevin Luna",
+    "jobTitle": "Full Stack Developer & Data Scientist",
+    "url": "http://www.kevinluna.wuaze.com",
+    "sameAs": [
+      "https://github.com/kevinluna94",
+      "https://instagram.com/emprendedordigitalia"
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Santa Rosa",
+      "addressRegion": "La Pampa",
+      "addressCountry": "AR"
+    }
+  }
+  </script>
+  
+  <!-- Verification -->
+  <meta name="google-site-verification" content="TajKMzIJpl9mMPcFQosmgnxwv7pMeXjkB4RsJeXF0aA" />
   <meta name="google-site-verification" content="DIE-QNoI6ZkhfcNL8RLXuOYpKLsO0-k1EOzfnR6fEsc" />
-  <meta name="robots" content="index, follow">
+  
+  <!-- Robots -->
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <link rel="canonical" href="http://www.kevinluna.wuaze.com/">
   
   <!-- Bootstrap CSS -->
@@ -101,7 +144,6 @@
         <div class="icon-track">
           <!-- Duplicado para efecto infinito -->
           <div class="tool scale-on-hover"><i class="fab fa-github"></i><span>GitHub</span></div>
-          <div class="tool scale-on-hover"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS5cq09y-kQLUWkV6yDj5s4PmniVgj9n4KzxtbJqUXiMlhp5eSG4T25gdIY5OUpKRVNqo&usqp=CAU" alt="VS Code" class="tool-img"><span>VS Code</span></div>
           <div class="tool scale-on-hover"><img src="https://1000logos.net/wp-content/uploads/2024/08/Vercel-Logo.png" alt="Vercel" class="tool-img"><span>Vercel</span></div>
           <div class="tool scale-on-hover"><i class="fas fa-database"></i><span>MySQL</span></div>
           <div class="tool scale-on-hover"><i class="fab fa-python"></i><span>Python</span></div>
@@ -202,9 +244,8 @@
     </div>
   </section>
 
-  <!-- Imagen Parallax Mejorada -->
-  <section class="parallax-section">
-    <div class="parallax-image" data-parallax="scroll" data-image-src="assets/hero-fallback.jpg"></div>
+  <!-- Imagen Parallax Mejorada - CORREGIDA -->
+  <section class="parallax-section" id="parallax-section">
     <div class="parallax-overlay">
       <div class="container">
         <div class="parallax-content" data-aos="fade-up">
@@ -275,8 +316,6 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <!-- AOS Animation -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <!-- Parallax -->
-  <script src="https://cdn.jsdelivr.net/parallax.js/1.4.2/parallax.min.js"></script>
   <!-- Main JS -->
   <script src="js/main.js"></script>
   <script src="js/animations.js"></script>

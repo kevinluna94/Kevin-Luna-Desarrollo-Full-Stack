@@ -534,43 +534,6 @@ if ('IntersectionObserver' in window) {
   });
 }
 
-// ========== TEXT ANIMATIONS ==========
-function animateText(element, text, speed = 50) {
-  let i = 0;
-  element.textContent = '';
-  
-  function typeWriter() {
-    if (i < text.length) {
-      element.textContent += text.charAt(i);
-      i++;
-      setTimeout(typeWriter, speed);
-    }
-  }
-  
-  typeWriter();
-}
-
-// ========== BACKGROUND GRADIENT ANIMATION ==========
-function animateBackgroundGradient() {
-  const gradientElements = document.querySelectorAll('.animated-gradient');
-  
-  gradientElements.forEach(element => {
-    let hue = 0;
-    
-    function updateGradient() {
-      hue = (hue + 0.5) % 360;
-      element.style.background = `linear-gradient(45deg, 
-        hsl(${hue}, 100%, 50%), 
-        hsl(${(hue + 60) % 360}, 100%, 50%),
-        hsl(${(hue + 120) % 360}, 100%, 50%)
-      )`;
-      requestAnimationFrame(updateGradient);
-    }
-    
-    updateGradient();
-  });
-}
-
 // Export for use in other files
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = PortfolioAnimations;

@@ -72,42 +72,75 @@ document.addEventListener('DOMContentLoaded', function() {
   const contactForm = document.getElementById('contactForm');
   
   if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby9EueOwG6L8HuBZkrgho6JMACXFI-iVYL0mIPdqPa9M4w2WIrVqqCn6zH6MZXAdlLjeA/exec';
+    
+    contactForm.addEventListener('submit', async function(e) {
       e.preventDefault();
       
-      const submitBtn = this.querySelector('button[type="submit"]');
+      // Validar formulario
+      if (!this.checkValidity()) {
+        this.classList.add('was-validated');
+        return;
+      }
+      
+      const submitBtn = this.querySelector('#submitBtn');
       const originalText = submitBtn.innerHTML;
+      const formMessage = document.getElementById('formMessage');
       
       // Mostrar estado de carga
       submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Enviando...';
       submitBtn.disabled = true;
       
-      // Simular envío (reemplazar con tu lógica real)
-      setTimeout(() => {
-        // Mostrar mensaje de éxito
-        const formMessage = document.getElementById('formMessage');
-        if (formMessage) {
-          formMessage.innerHTML = `
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-              <i class="fas fa-check-circle me-2"></i>
-              <strong>¡Mensaje enviado con éxito!</strong> Te responderé en menos de 24 horas.
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-          `;
-        }
+      // Recoger datos del formulario
+      const formData = {
+        nombre: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        asunto: document.getElementById('subject').value,
+        mensaje: document.getElementById('message').value
+      };
+      
+      try {
+        // Enviar datos a Google Apps Script
+        const response = await fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData)
+        });
         
-        // Restaurar botón
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
+        // Como no-cors no permite leer la respuesta, asumimos éxito
+        showFormMessage('success', '¡Mensaje enviado correctamente! Te responderé en menos de 24 horas.');
         
         // Limpiar formulario
         contactForm.reset();
+        contactForm.classList.remove('was-validated');
         
-        // Desplazar al mensaje
-        if (formMessage) {
-          formMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-      }, 1500);
+        // Opcional: Abrir WhatsApp automáticamente
+        setTimeout(() => {
+          window.open('https://wa.me/5492954217949?text=Hola%20Kevin,%20acabo%20de%20enviarte%20un%20mensaje%20desde%20tu%20portfolio', '_blank');
+        }, 2000);
+        
+      } catch (error) {
+        console.error('Error:', error);
+        showFormMessage('error', 'Error al enviar el mensaje. Por favor, inténtalo de nuevo o escríbeme por WhatsApp.');
+      } finally {
+        // Restaurar botón
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+      }
+      
+      function showFormMessage(type, message) {
+        formMessage.innerHTML = `
+          <div class="alert alert-${type === 'success' ? 'success' : 'danger'} alert-dismissible fade show" role="alert">
+            <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-triangle'} me-2"></i>
+            ${message}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        `;
+        formMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
     });
   }
 
@@ -157,20 +190,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const scrolled = (winScroll / height) * 100;
     progressBar.style.width = scrolled + '%';
   });
-
-  // ========== PARALLAX EFFECT ==========
-  function parallaxEffect() {
-    const scrolled = window.pageYOffset;
-    const parallaxElements = document.querySelectorAll('.parallax-layer');
-    
-    parallaxElements.forEach(element => {
-      const speed = element.dataset.speed || 0.5;
-      const yPos = -(scrolled * speed);
-      element.style.transform = `translate3d(0, ${yPos}px, 0)`;
-    });
-  }
-
-  window.addEventListener('scroll', parallaxEffect);
 
   // ========== MOBILE MENU CLOSE ON CLICK ==========
   document.querySelectorAll('.navbar-collapse .nav-link').forEach(link => {
@@ -318,59 +337,3 @@ window.addEventListener('resize', function() {
     }
   }, 250);
 });
-
-// ========== SERVICE WORKER (OPCIONAL) ==========
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function() {
-    navigator.serviceWorker.register('/sw.js').then(function(registration) {
-      console.log('ServiceWorker registrado con éxito: ', registration.scope);
-    }).catch(function(err) {
-      console.log('Error al registrar ServiceWorker: ', err);
-    });
-  });
-}
-
-// ========== OFFLINE DETECTION ==========
-window.addEventListener('online', function() {
-  document.body.classList.remove('offline');
-  console.log('Conectado a internet');
-});
-
-window.addEventListener('offline', function() {
-  document.body.classList.add('offline');
-  console.log('Sin conexión a internet');
-});
-
-// ========== KEYBOARD SHORTCUTS ==========
-document.addEventListener('keydown', function(e) {
-  // Ctrl + K para focus en búsqueda (si existe)
-  if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-    e.preventDefault();
-    const searchInput = document.querySelector('.search-input');
-    if (searchInput) {
-      searchInput.focus();
-    }
-  }
-  
-  // Escape para cerrar modales
-  if (e.key === 'Escape') {
-    const openModal = document.querySelector('.modal.show');
-    if (openModal) {
-      const modalInstance = bootstrap.Modal.getInstance(openModal);
-      if (modalInstance) {
-        modalInstance.hide();
-      }
-    }
-  }
-});
-
-// ========== PERFORMANCE MONITORING ==========
-if (typeof PerformanceObserver !== 'undefined') {
-  const perfObserver = new PerformanceObserver((list) => {
-    for (const entry of list.getEntries()) {
-      console.log(`[Performance] ${entry.name}: ${entry.duration.toFixed(2)}ms`);
-    }
-  });
-  
-  perfObserver.observe({ entryTypes: ['measure', 'navigation'] });
-}

@@ -429,38 +429,52 @@ h4 { font-size: 1.5rem; }
   font-weight: 600;
 }
 
-/* Parallax Section */
+/* ========== PARALLAX FIXED ========== */
 .parallax-section {
   position: relative;
-  min-height: 500px;
-  overflow: hidden;
-}
-
-.parallax-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 120%;
+  min-height: 400px;
+  background: linear-gradient(rgba(11, 11, 11, 0.5), rgba(8, 8, 8, 0.4)), 
+              url('https://i.pinimg.com/736x/38/f2/e4/38f2e4e6e6529b0943676a50bbc8c3f5.jpg');
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
 }
 
-.parallax-overlay {
+.parallax-section::before {
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(11, 11, 11, 0.7);
-  display: flex;
-  align-items: center;
+  background: rgba(246, 167, 0, 0.1);
+  z-index: 1;
+}
+
+.parallax-overlay {
+  position: relative;
+  z-index: 2;
+  width: 100%;
 }
 
 .parallax-content {
-  max-width: 600px;
+  text-align: center;
+  padding: 4rem 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Fallback para dispositivos móviles */
+@media (max-width: 768px) {
+  .parallax-section {
+    background-attachment: scroll;
+  }
 }
 
 /* CTA Banner */
@@ -631,6 +645,20 @@ h4 { font-size: 1.5rem; }
   flex-shrink: 0;
 }
 
+/* ========== FIX ICONO INSTAGRAM ========== */
+.social-contact-icon.instagram {
+  background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+}
+
+.social-icon[aria-label="Instagram"] {
+  transition: all 0.3s ease;
+}
+
+.social-icon[aria-label="Instagram"]:hover {
+  background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+  transform: scale(1.1) rotate(5deg);
+}
+
 .social-contact-card {
   display: flex;
   align-items: center;
@@ -659,7 +687,7 @@ h4 { font-size: 1.5rem; }
   font-size: 1.2rem;
 }
 
-.social-contact-icon.instagram { background: #E4405F; }
+.social-contact-icon.instagram { background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D); }
 .social-contact-icon.github { background: #181717; }
 .social-contact-icon.linkedin { background: #0A66C2; }
 .social-contact-icon.whatsapp { background: #25D366; }
@@ -964,6 +992,14 @@ h4 { font-size: 1.5rem; }
   .pt-7 {
     padding-top: 80px;
   }
+  
+  .parallax-section {
+    min-height: 300px;
+  }
+  
+  .parallax-content {
+    padding: 2rem 1rem;
+  }
 }
 
 @media (max-width: 576px) {
@@ -978,5 +1014,33 @@ h4 { font-size: 1.5rem; }
   
   .tech-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--brand);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--brand-dark);
+}
+
+/* Print Styles */
+@media print {
+  .whatsapp-float,
+  .back-to-top,
+  .navbar,
+  .btn {
+    display: none !important;
   }
 }
