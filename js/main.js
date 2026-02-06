@@ -121,8 +121,6 @@ document.addEventListener('DOMContentLoaded', function() {
           contactForm.reset();
           contactForm.classList.remove('was-validated');
           
-          // NO abrir WhatsApp automáticamente (removido según instrucciones)
-          
         } else {
           throw new Error('Respuesta inesperada del servidor: ' + result);
         }
@@ -150,6 +148,29 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   }
+
+  // ========== FIX PARA ELEMENTOS QUE DESBORDAN EN MÓVIL ==========
+  function fixMobileOverflow() {
+    // Asegurar que el body no tenga scroll horizontal
+    document.body.style.overflowX = 'hidden';
+    
+    // Ajustar ancho de secciones específicas
+    const wideSections = document.querySelectorAll('.icon-scroller, .tools-section, .resources-section');
+    wideSections.forEach(section => {
+      section.style.maxWidth = '100vw';
+      section.style.width = '100vw';
+    });
+    
+    // Ajustar icon track para móvil
+    const iconTrack = document.querySelector('.icon-track');
+    if (iconTrack && window.innerWidth < 768) {
+      iconTrack.style.animationDuration = '20s';
+    }
+  }
+  
+  // Ejecutar al cargar y al redimensionar
+  fixMobileOverflow();
+  window.addEventListener('resize', fixMobileOverflow);
 
   // ========== PROJECT CARD INTERACTIONS ==========
   document.querySelectorAll('.project-card').forEach(card => {
@@ -282,6 +303,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Remover clase de preload
     document.body.classList.remove('preload');
     
+    // Forzar recálculo para prevenir scroll horizontal
+    setTimeout(() => {
+      document.body.style.overflowX = 'hidden';
+    }, 100);
+    
     // Ocultar loader si existe
     const loader = document.querySelector('.page-loader');
     if (loader) {
@@ -307,26 +333,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // Add animation to elements when they come into view
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('animated');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, observerOptions);
-
-  // Observe elements with data-animate attribute
-  document.querySelectorAll('[data-animate]').forEach(el => {
-    observer.observe(el);
-  });
-
   // ========== CONSOLE GREETING ==========
   console.log('%c¡Hola! 👋', 'font-size: 18px; font-weight: bold; color: #f6a700;');
   console.log('%cBienvenido al portafolio de Kevin Luna', 'font-size: 14px; color: #666;');
@@ -338,13 +344,16 @@ let resizeTimer;
 window.addEventListener('resize', function() {
   clearTimeout(resizeTimer);
   resizeTimer = setTimeout(function() {
+    // Forzar ocultar scroll horizontal
+    document.body.style.overflowX = 'hidden';
+    
     if (typeof updateNavbar === 'function') {
       updateNavbar();
     }
   }, 250);
 });
 
-// ========== REVEAL ON SCROLL (intersection observer) ==========
+// ========== REVEAL ON SCROLL ==========
 const revealOnScroll = () => {
   const reveals = document.querySelectorAll('.reveal, .project-card, .tool, .reveal-hover');
   const windowHeight = window.innerHeight;
@@ -404,7 +413,6 @@ function setupSimpleContactForm() {
           </div>
         `;
       }
-      // NO abrir WhatsApp automáticamente (removido según instrucciones)
     })
     .catch(error => {
       console.error('Error completo:', error);

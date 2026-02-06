@@ -17,16 +17,217 @@
   --shadow-xl: 0 20px 50px rgba(0,0,0,0.2);
 }
 
+/* ========== FIX CRITICAL - PREVENT HORIZONTAL SCROLL ========== */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.container, .container-fluid {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Asegurar que todos los elementos respeten el ancho */
+* {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* ========== FIX PARA SECCIONES QUE DESBORDAN ========== */
+.hero-section,
+.tools-section,
+.resources-section,
+.parallax-section,
+.solutions-preview,
+.cta-banner,
+.footer {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+/* ========== FIX ICON SCROLLER PARA MÓVIL ========== */
+.icon-scroller {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.icon-track {
+  gap: 2rem;
+  padding: 0 1rem;
+}
+
+@media (max-width: 768px) {
+  .icon-track {
+    gap: 1rem;
+    animation-duration: 15s;
+  }
+  
+  .tool {
+    min-width: 90px;
+    padding: 1rem 0.5rem;
+  }
+}
+
+/* ========== FIX HERO SECTION ========== */
+.hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    height: 90vh;
+    min-height: 500px;
+  }
+  
+  .hero-card {
+    padding: 1.5rem;
+    margin: 0 15px;
+  }
+}
+
+/* ========== FIX CARDS Y CONTENEDORES ========== */
+.project-card,
+.solution-card,
+.service-card,
+.diploma-card {
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.row > * {
+  padding-left: calc(var(--bs-gutter-x) * 0.5);
+  padding-right: calc(var(--bs-gutter-x) * 0.5);
+}
+
+/* ========== FIX IMÁGENES ========== */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.card-img-top,
+.profile-img,
+.diploma-img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* ========== FIX PARA FORMULARIOS ========== */
+.form-control,
+.form-select {
+  max-width: 100%;
+}
+
+/* ========== FIX PARA TEXTOS LARGOS ========== */
+.text-break {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+/* ========== FIX ESPECÍFICO PARA MÓVILES ========== */
+@media (max-width: 576px) {
+  /* Ajustar padding general */
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
+  /* Ajustar márgenes negativas */
+  .row {
+    margin-left: -8px;
+    margin-right: -8px;
+  }
+  
+  /* Ajustar display de stats */
+  .solutions-stats {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  /* Ajustar botones grandes */
+  .btn-lg {
+    padding: 0.75rem 1.25rem;
+    font-size: 1rem;
+  }
+  
+  /* Ajustar títulos */
+  h1 { font-size: 2.2rem; }
+  h2 { font-size: 1.8rem; }
+  h3 { font-size: 1.5rem; }
+  
+  .display-4 {
+    font-size: 2.5rem;
+  }
+  
+  /* Ajustar hero */
+  .hero-content {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+/* ========== FIX PARA WHATSAPP FLOAT EN MÓVIL ========== */
+@media (max-width: 768px) {
+  .whatsapp-float {
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+  }
+  
+  .whatsapp-tooltip {
+    display: none; /* Ocultar tooltip en móvil */
+  }
+}
+
+/* ========== FIX PARA NAVBAR EN MÓVIL ========== */
+.navbar-collapse {
+  max-width: 100vw;
+}
+
+.navbar-nav {
+  width: 100%;
+}
+
+/* ========== FIX PARA SECCIÓN RECURSOS ========== */
+.resources-section {
+  background-attachment: scroll !important;
+}
+
+/* ========== FIX PARA PARALLAX ========== */
+.parallax-section {
+  background-attachment: scroll !important;
+}
+
 /* Reset & base */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-}
-
-html, body {
-  height: 100%;
-  scroll-behavior: smooth;
 }
 
 body {
@@ -35,7 +236,6 @@ body {
   background: var(--white);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
 }
 
 body.preload * {
@@ -74,7 +274,7 @@ h4 { font-size: 1.5rem; }
   text-shadow: 0 0 10px rgba(246, 167, 0, 0.3);
 }
 
-/* NAVBAR MEJORADO */
+/* ========== NAVBAR MEJORADO - CORREGIDO ========== */
 .navbar {
   background: transparent;
   padding: 1rem 0;
@@ -89,8 +289,20 @@ h4 { font-size: 1.5rem; }
   box-shadow: var(--shadow-md);
 }
 
+/* Contenedor principal del navbar */
+.navbar > .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Logo a la izquierda */
 .navbar-brand {
   font-weight: 700;
+  display: flex;
+  align-items: center;
+  margin-right: 0;
 }
 
 .logo-img {
@@ -110,12 +322,52 @@ h4 { font-size: 1.5rem; }
   letter-spacing: -0.5px;
 }
 
+/* Botón hamburguesa - derecha en móvil */
+.navbar-toggler {
+  order: 2;
+  border: none;
+  padding: 0.25rem 0;
+}
+
+/* Navegación - derecha en escritorio */
+.navbar-collapse {
+  order: 3;
+  width: 100%;
+}
+
+@media (min-width: 992px) {
+  .navbar-toggler {
+    display: none;
+  }
+  
+  .navbar-collapse {
+    order: 2;
+    width: auto;
+    display: flex !important;
+    justify-content: flex-end;
+    flex-grow: 0;
+  }
+  
+  .navbar-nav {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+/* Items de navegación */
 .nav-link {
   font-weight: 600;
   color: var(--white) !important;
   padding: 0.5rem 1rem !important;
   position: relative;
   transition: color var(--transition-fast);
+  text-align: center;
+}
+
+@media (min-width: 992px) {
+  .nav-link {
+    text-align: left;
+  }
 }
 
 .nav-link::after {
@@ -138,6 +390,86 @@ h4 { font-size: 1.5rem; }
 .nav-link:hover,
 .nav-link.active {
   color: var(--brand) !important;
+}
+
+/* Botón CV especial */
+.navbar-nav .btn-outline-light {
+  border-radius: 20px;
+  padding: 0.5rem 1.25rem;
+  font-weight: 600;
+  transition: all var(--transition-smooth);
+}
+
+.navbar-nav .btn-outline-light:hover {
+  background-color: var(--brand);
+  border-color: var(--brand);
+  color: var(--black) !important;
+  transform: translateY(-2px);
+}
+
+/* Ajustes para móvil */
+@media (max-width: 991px) {
+  .navbar-collapse {
+    background: rgba(11, 11, 11, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    margin-top: 1rem;
+    padding: 1rem;
+  }
+  
+  .nav-item {
+    margin: 0.5rem 0;
+  }
+  
+  .nav-item.ms-lg-3 {
+    margin-left: 0 !important;
+    margin-top: 1rem;
+  }
+}
+
+/* Ajustes para escritorio */
+@media (min-width: 992px) {
+  .nav-item {
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+  }
+  
+  .nav-item.ms-lg-3 {
+    margin-left: 1.5rem !important;
+  }
+  
+  /* Espaciado entre items de navegación */
+  .navbar-nav {
+    gap: 0.5rem;
+  }
+}
+
+/* ========== FIX ESPECÍFICO PARA DISTRIBUCIÓN ========== */
+/* Forzar distribución en escritorio */
+@media (min-width: 992px) {
+  .navbar > .container {
+    display: grid !important;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+  }
+  
+  .navbar-brand {
+    grid-column: 1;
+  }
+  
+  .navbar-collapse {
+    grid-column: 2;
+    justify-self: end;
+  }
+  
+  .navbar-toggler {
+    display: none;
+  }
+}
+
+/* Asegurar que el contenido no se salga */
+.navbar .container {
+  max-width: 100%;
 }
 
 /* Botones */
@@ -308,12 +640,6 @@ h4 { font-size: 1.5rem; }
   background: linear-gradient(to bottom, var(--dark), var(--black));
   position: relative;
   overflow: hidden;
-}
-
-.icon-scroller {
-  overflow: hidden;
-  position: relative;
-  padding: 2rem 0;
 }
 
 .icon-track {
@@ -622,7 +948,6 @@ h4 { font-size: 1.5rem; }
   gap: 0.5rem;
 }
 
-
 /* ======================= RECURSOS SECTION ======================= */
 .resources-section {
   position: relative;
@@ -661,13 +986,6 @@ h4 { font-size: 1.5rem; }
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-20px); }
 }
-
-@media (max-width: 768px) {
-  .resources-bg {
-    background-attachment: scroll;
-  }
-}
-
 
 /* Solutions Preview Section */
 .solutions-preview {
@@ -736,17 +1054,6 @@ h4 { font-size: 1.5rem; }
   margin-bottom: 0.25rem;
   font-size: 1rem;
 }
-
-@media (max-width: 768px) {
-  .solutions-stats {
-    justify-content: center;
-  }
-  
-  .preview-card {
-    padding: 0.75rem;
-  }
-}
-
 
 /* Contact */
 .contact-header {
